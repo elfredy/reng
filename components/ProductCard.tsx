@@ -19,6 +19,7 @@ export function ProductCard({ product }: { product: Product }) {
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-105"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            unoptimized={product.image.startsWith("http")}
           />
           <span className="absolute top-3 left-3 rounded-full bg-amber-100/95 dark:bg-slate-800/95 px-2.5 py-0.5 text-xs font-medium text-amber-900 dark:text-amber-200">
             {product.category}

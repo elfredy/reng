@@ -26,10 +26,10 @@ export function Header() {
             Məhsullar
           </Link>
           <Link
-            href="/#kategoriler"
+            href="/#search"
             className="text-sm font-medium text-amber-800/80 dark:text-slate-300 hover:text-amber-600 dark:hover:text-amber-400 transition"
           >
-            Kateqoriyalar
+            Axtarış
           </Link>
         </nav>
 

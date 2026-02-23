@@ -1,17 +1,44 @@
-import { notFound } from "next/navigation";
+"use client";
+
+import { useEffect, useState } from "react";
+import { useParams, notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { getProductBySlug, getProducts } from "@/lib/products";
+import { fetchProductBySlug } from "@/lib/products-firestore";
 import { AddToCartButton } from "./AddToCartButton";
 import { formatPrice } from "@/lib/format";
+import type { Product } from "@/lib/products-firestore";
 
-export async function generateStaticParams() {
-  return getProducts().map((p) => ({ slug: p.slug }));
-}
+export default function ProductPage() {
+  const params = useParams();
+  const slug = typeof params.slug === "string" ? params.slug : "";
+  const [product, setProduct] = useState<Product | null | undefined>(undefined);
 
-export default function ProductPage({ params }: { params: { slug: string } }) {
-  const product = getProductBySlug(params.slug);
-  if (!product) notFound();
+  useEffect(() => {
+    if (!slug) {
+      setProduct(null);
+      return;
+    }
+    let cancelled = false;
+    fetchProductBySlug(slug).then((p) => {
+      if (!cancelled) setProduct(p);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [slug]);
+
+  if (product === undefined) {
+    return (
+      <div className="mx-auto max-w-5xl px-4 py-12 text-center text-amber-800/80 dark:text-slate-400">
+        Yüklənir...
+      </div>
+    );
+  }
+
+  if (product === null) {
+    notFound();
+  }
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
@@ -31,6 +58,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
             className="object-cover"
             sizes="(max-width: 1024px) 100vw, 50vw"
             priority
+            unoptimized={product.image.startsWith("http")}
           />
         </div>
         <div>

@@ -10,6 +10,7 @@
     "copy-images": "mkdir -p public/img && cp -n img/*.jpeg public/img/ 2>/dev/null || true"
   },
   "dependencies": {
+    "firebase": "^10.14.0",
     "next": "^14.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
