@@ -20,7 +20,11 @@ let analytics: Analytics | null = null;
 
 export function getFirebaseApp(): FirebaseApp {
   if (!app) {
-    if (!firebaseConfig.apiKey) throw new Error("Missing Firebase config");
+    if (!firebaseConfig.apiKey) {
+      throw new Error(
+        "Missing Firebase config. Canlı (production) mühitdə NEXT_PUBLIC_FIREBASE_API_KEY və digər NEXT_PUBLIC_FIREBASE_* dəyişənlərini hosting panelində (Vercel/Netlify və s.) əlavə edin."
+      );
+    }
     app = initializeApp(firebaseConfig);
   }
   return app;
