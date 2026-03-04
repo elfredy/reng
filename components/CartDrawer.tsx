@@ -49,14 +49,21 @@ export function CartDrawer() {
                   key={product.id}
                   className="flex gap-3 rounded-xl border border-amber-200/60 dark:border-slate-600 p-3 bg-white/80 dark:bg-slate-700/50"
                 >
-                  <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-lg">
-                    <Image
-                      src={product.image}
-                      alt={product.name}
-                      fill
-                      className="object-cover"
-                      sizes="80px"
-                    />
+                  <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-lg bg-amber-100 dark:bg-slate-600">
+                    {product.image ? (
+                      <Image
+                        src={product.image}
+                        alt={product.name}
+                        fill
+                        className="object-cover"
+                        sizes="80px"
+                        unoptimized={product.image.startsWith("http")}
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center text-[10px] text-amber-500 dark:text-slate-400 text-center leading-tight">
+                        Şəkil yoxdur
+                      </div>
+                    )}
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="font-medium text-amber-900 dark:text-slate-100 truncate">

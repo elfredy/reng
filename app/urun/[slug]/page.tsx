@@ -51,15 +51,21 @@ export default function ProductPage() {
 
       <div className="grid gap-8 lg:grid-cols-2">
         <div className="relative aspect-square overflow-hidden rounded-2xl border border-amber-200/80 dark:border-slate-600 bg-amber-50 dark:bg-slate-700">
-          <Image
-            src={product.image}
-            alt={product.name}
-            fill
-            className="object-cover"
-            sizes="(max-width: 1024px) 100vw, 50vw"
-            priority
-            unoptimized={product.image.startsWith("http")}
-          />
+          {product.image ? (
+            <Image
+              src={product.image}
+              alt={product.name}
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              priority
+              unoptimized={product.image.startsWith("http")}
+            />
+          ) : (
+            <div className="absolute inset-0 flex items-center justify-center text-amber-500 dark:text-slate-400 text-sm">
+              Şəkil URL əlavə edin
+            </div>
+          )}
         </div>
         <div>
           <span className="rounded-full bg-amber-200/80 dark:bg-slate-600 px-3 py-1 text-xs font-medium text-amber-900 dark:text-amber-200">

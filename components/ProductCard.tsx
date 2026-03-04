@@ -13,14 +13,20 @@ export function ProductCard({ product }: { product: Product }) {
     <article className="group relative rounded-2xl border border-amber-200/80 dark:border-slate-600 bg-white dark:bg-slate-700/50 overflow-hidden shadow-sm hover:shadow-xl hover:border-amber-300 dark:hover:border-amber-500/50 transition-all duration-300">
       <Link href={`/urun/${product.slug}`} className="block">
         <div className="aspect-square relative bg-amber-50 dark:bg-slate-700 overflow-hidden">
-          <Image
-            src={product.image}
-            alt={product.name}
-            fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            unoptimized={product.image.startsWith("http")}
-          />
+          {product.image ? (
+            <Image
+              src={product.image}
+              alt={product.name}
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              unoptimized={product.image.startsWith("http")}
+            />
+          ) : (
+            <div className="absolute inset-0 flex items-center justify-center text-amber-400 dark:text-slate-500 text-sm">
+              Şəkil URL əlavə edin
+            </div>
+          )}
           <span className="absolute top-3 left-3 rounded-full bg-amber-100/95 dark:bg-slate-800/95 px-2.5 py-0.5 text-xs font-medium text-amber-900 dark:text-amber-200">
             {product.category}
           </span>

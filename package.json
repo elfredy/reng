@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "copy-images": "mkdir -p public/img && cp -n img/*.jpeg public/img/ 2>/dev/null || true"
+    "lint": "next lint"
   },
   "dependencies": {
     "firebase": "^10.14.0",

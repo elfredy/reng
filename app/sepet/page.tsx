@@ -34,14 +34,21 @@ export default function SepetPage() {
                 key={product.id}
                 className="flex gap-4 rounded-2xl border border-amber-200/80 dark:border-slate-600 bg-white dark:bg-slate-700/50 p-4"
               >
-                <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-xl">
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    fill
-                    className="object-cover"
-                    sizes="96px"
-                  />
+                <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-xl bg-amber-100 dark:bg-slate-600">
+                  {product.image ? (
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      fill
+                      className="object-cover"
+                      sizes="96px"
+                      unoptimized={product.image.startsWith("http")}
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center text-xs text-amber-500 dark:text-slate-400 text-center">
+                      Şəkil yoxdur
+                    </div>
+                  )}
                 </div>
                 <div className="min-w-0 flex-1">
                   <h3 className="font-semibold text-amber-900 dark:text-slate-100">

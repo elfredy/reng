@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useCart } from "@/contexts/CartContext";
 
@@ -11,11 +12,15 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 w-full border-b border-amber-200/60 dark:border-slate-600 bg-amber-50/90 dark:bg-slate-800/90 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link
-          href="/"
-          className="font-display text-2xl font-serif text-amber-900 dark:text-amber-100 tracking-tight"
-        >
-          RƏNG
+        <Link href="/" className="flex items-center shrink-0">
+          <Image
+            src="/img/logo.PNG"
+            alt="RƏNG"
+            width={180}
+            height={72}
+            className="h-14 w-auto min-w-[140px] object-contain sm:h-16 sm:min-w-[160px]"
+            priority
+          />
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
